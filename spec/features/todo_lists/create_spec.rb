@@ -64,12 +64,3 @@ describe "Creating todo lists" do
 		expect(page).to_not have_content("Grocery list")
 	end
 end
-
-# we have made a method called create_todo_list so we dont have to repeat the code each timevisit "/todo_lists"
-# visit "/todo_lists"
-# click_link "New Todo list"
-# expect(page).to have_content("New todo_list")
-#
-# fill_in "Title", with: "Grocery list"
-# fill_in "Description", with: "Food"
-# click_button "Create Todo list"
