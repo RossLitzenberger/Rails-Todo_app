@@ -13,3 +13,8 @@ require 'spec_helper'
 describe TodoListsHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
+RRSpec.configure do |config|
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+end
