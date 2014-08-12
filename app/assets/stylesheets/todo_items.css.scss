@@ -1,3 +1,22 @@
 // Place all the styles related to the todo_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.alart{
+	border:2px soild #aaa;
+	padding:10px;
+}
+
+div.flash.success{ 
+	border: 2px	solid green;
+	color: green;
+}
+
+div.flash.error{ 
+	border: 2px	solid red;
+	color: red;
+}
+div.flash.notice{ 
+	border: 2px	solid blue;
+	color: blue;
+}
