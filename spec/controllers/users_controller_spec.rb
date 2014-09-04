@@ -31,7 +31,6 @@ describe UsersController do
   let(:valid_session) { {} }
 
 
-
   describe "GET new" do
     it "assigns a new user as @user" do
       get :new, {}, valid_session
