@@ -34,7 +34,54 @@ describe UserSessionsController do
         expect(user).to receive(:authenticate)
         post :create, email: "ross@example.com", password: "password1234"
       end
+
+      it "sets the user_id in the session" do
+        post :create, email: "ross@example.com", password: "password1234"
+        expect(session[:user_id]).to eq(user.id)
+      end
+
+      it "set the flash success message" do
+        post :create, email: "ross@example.com", password: "password1234"
+        expect(flash[:success]).to  eq("Thanks for logging in!")
+      end
     end
+
+    shared_examples_for "denied login" do
+      it "renders the new template" do
+        post :create, email: email  , password: password
+        expect(response).to render_template('new')
+      end
+
+      it "sets the flash error message" do
+        post :create
+        expect(flash[:error]).to  eq("There was a problem loggin in. Please check your email and password.")
+      end
+    end
+    # space
+
+
+    context "with blank credentials"do
+        let(:email) {""}
+        let(:password) {""}
+      it_behaves_like "denied login"
+    end
+    # space
+
+    context "with an incorrect credentials"do
+      let!(:user) { User.create(first_name: "Ross", last_name: "Litz", email: "ross@example.com", password: "password1234", password_confirmation: "password1234") }
+      let(:email) { user.email}
+      let(:password) { "incorrect" }
+      it_behaves_like "denied login"
+    end
+
+    conext "with no email in existence"do
+      let(:email) { "none@found.com"}
+      let(:password) { "incorrect" }
+      it_behaves_like "denied login"
+      end
+    end
+  
   end
 
+  # end
 end
