@@ -74,14 +74,11 @@ describe UserSessionsController do
       it_behaves_like "denied login"
     end
 
-    conext "with no email in existence"do
+    context "with no email in existence"do
       let(:email) { "none@found.com"}
       let(:password) { "incorrect" }
       it_behaves_like "denied login"
-      end
     end
-  
   end
-
-  # end
+  # space
 end
