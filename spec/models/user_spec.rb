@@ -5,8 +5,11 @@ describe User do
     {
       first_name: "Ross",
       last_name: "litz",
-      email: "ross@example.com"
+      email: "ross@example.com",
+      password: "treehouse1234",
+      password_confirmation: "treehouse1234"
     }
+
   }
   context "validations" do
     let!(:user) { User.new(valid_attributes) }
@@ -28,6 +31,10 @@ describe User do
       expect(user).to validate_uniqueness_of(:email)
     end
 
+    it "requires the email address to look like an email" do
+      user.email = "jason"
+      expect(user).to_not be_valid
+    end
   end
 
   describe "#downcase_email" do
