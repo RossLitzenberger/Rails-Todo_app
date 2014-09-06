@@ -1,8 +1,13 @@
 require 'spec_helper'
 
 describe "Deleting todo lists" do
+	let(:user) { create(:user) }
   let!(:todo_list) { TodoList.create(title: "Groceries", description: "Grocery list.") }
-
+	 
+	 before do
+	    sign_in user, password: "password1234"
+	  end
+  
   it "is successful when clicking the destroy link" do
     visit "/todo_lists"
 
@@ -12,4 +17,5 @@ describe "Deleting todo lists" do
     expect(page).to_not have_content(todo_list.title)
     expect(TodoList.count).to eq(0)
   end
+
 end

@@ -1,12 +1,9 @@
-Rails.application.routes.draw do
-  get 'user_sessions/new'
-
-  get 'user_sessions/create'
+Odot::Application.routes.draw do
+  get "/login" => "user_sessions#new", as: :login
+  delete "/logout" => "user_sessions#destroy", as: :logout
 
   resources :users
   resources :user_sessions, only: [:new, :create]
-
-  get 'todo_items/index'
 
   resources :todo_lists do
     resources :todo_items do
@@ -16,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
   root 'todo_lists#index'
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
