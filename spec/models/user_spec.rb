@@ -6,11 +6,16 @@ describe User do
       first_name: "Ross",
       last_name: "litz",
       email: "ross@example.com",
-      password: "treehouse1234",
-      password_confirmation: "treehouse1234"
+      password: "password1234",
+      password_confirmation: "password1234"
     }
 
   }
+
+  context "relationships" do
+    it{ should have_many(:todo_lists) }
+  end
+
   context "validations" do
     let!(:user) { User.new(valid_attributes) }
 
@@ -32,7 +37,7 @@ describe User do
     end
 
     it "requires the email address to look like an email" do
-      user.email = "jason"
+      user.email = "ross"
       expect(user).to_not be_valid
     end
   end
