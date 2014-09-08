@@ -4,6 +4,7 @@ Odot::Application.routes.draw do
 
   resources :users
   resources :user_sessions, only: [:new, :create]
+  resources :password_resets, only: [:new, :create]
 
   resources :todo_lists do
     resources :todo_items do
@@ -13,7 +14,7 @@ Odot::Application.routes.draw do
     end
   end
   root 'todo_lists#index'
- 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
