@@ -3,8 +3,8 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-      user = User.find_by(email: params[:email])
-    if  user && user.authenticate(params[:password])
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Thanks for logging in!"
       redirect_to todo_lists_path
@@ -19,5 +19,4 @@ class UserSessionsController < ApplicationController
     reset_session
     redirect_to root_path, notice: "You have been logged out."
   end
-
 end
