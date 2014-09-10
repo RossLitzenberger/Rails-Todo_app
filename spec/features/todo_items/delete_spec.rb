@@ -1,11 +1,10 @@
 require 'spec_helper'
 
-describe "Editing todo items" do
+describe "Deleting todo items" do
   let(:user) { todo_list.user }
   let!(:todo_list) { create(:todo_list) }
   let!(:todo_item) { todo_list.todo_items.create(content: "Milk") }
-
-  before {  sign_in user, password: "password1234" }
+  before { sign_in user, password: 'password1234' }
 
   it "is successful" do
     visit_todo_list(todo_list)
